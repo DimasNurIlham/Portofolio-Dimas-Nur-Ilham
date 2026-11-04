@@ -93,6 +93,22 @@ export default function Navbar() {
     };
   }, []);
 
+  // Handler Khusus untuk Mobile Scroll
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setOpen(false); // Tutup menu mobile
+
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      // Jeda sedikit agar menu menutup dulu baru melakukan smooth scroll
+      setTimeout(() => {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
+
   return (
     <>
       {/* Top Scroll Progress Line */}
@@ -141,7 +157,7 @@ export default function Navbar() {
               </div>
             </a>
 
-            {/* DESKTOP NAV LINKS (Spacing Presisi) */}
+            {/* DESKTOP NAV LINKS */}
             <nav className="hidden items-center gap-0.5 xl:gap-1.5 lg:flex">
               {navLinks.map((item) => {
                 const isActive = activeSection === item.href.replace("#", "");
@@ -225,7 +241,7 @@ export default function Navbar() {
                       <a
                         key={item.name}
                         href={item.href}
-                        onClick={() => setOpen(false)}
+                        onClick={(e) => handleNavClick(e, item.href)}
                         className={`flex items-center rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
                           isActive
                             ? "border border-green-400/20 bg-green-400/10 text-green-400"
