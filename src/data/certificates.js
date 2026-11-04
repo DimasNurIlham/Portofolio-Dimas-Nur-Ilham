@@ -1,0 +1,51 @@
+export const certificates = [
+  {
+    title: "Belajar Dasar Pemrograman Javascript",
+    issuer: "Dicoding Indonesia",
+    category: "Web Dev",
+    link: "https://drive.google.com/file/d/14t7Ep_uh6keNQSXSBOXfHaydLnKsRcOY/view?usp=drive_link",
+    skills: ["JavaScript", "ES6+", "Asynchronous JS"],
+  },
+  {
+    title: "Belajar Dasar Pemrograman Web",
+    issuer: "Dicoding Indonesia",
+    category: "Web Dev",
+    link: "https://drive.google.com/file/d/1FlQejLsk03SwDKgxTGJ-2VNa6bqYl0wi/view?usp=drive_link",
+    skills: ["HTML5", "CSS3", "Responsive Design"],
+  },
+  {
+    title: "Belajar Dasar SQL",
+    issuer: "Dicoding Indonesia",
+    category: "Database",
+    link: "https://drive.google.com/file/d/1r45duSB0_2LLQ8gOoGP0A1SZAcdQgsYJ/view?usp=drive_link",
+    skills: ["SQL", "Database Query", "Relational Database"],
+  },
+  {
+    title: "Belajar Membuat Frontend Web untuk Pemula",
+    issuer: "Dicoding Indonesia",
+    category: "Web Dev",
+    link: "https://drive.google.com/file/d/16HlWENoW9_KSQIt86-r87QM9ZaChfqDi/view?usp=drive_link",
+    skills: ["DOM Manipulation", "Browser API", "Frontend Development"],
+  },
+  {
+    title: "Microsoft Office Accelerated Competency Training (Action)",
+    issuer: "Certiport",
+    category: "Technical",
+    link: "https://drive.google.com/file/d/1-k5gq5TxUk3Y8cZvymOIFgt-i87xhxWQ/view?usp=drive_link",
+    skills: ["Microsoft Office", "Productivity Tools"],
+  },
+  {
+    title: "Public Speaking Training",
+    issuer: "EPDC",
+    category: "Soft Skills",
+    link: "https://drive.google.com/file/d/1HvOG9edQ5B3Lk672emaLencY1iHQ08me/view?usp=drive_link",
+    skills: ["Public Speaking", "Communication", "Presentation"],
+  },
+  {
+    title: "Software Development Fundamentals",
+    issuer: "Certiport",
+    category: "Technical",
+    link: "https://drive.google.com/file/d/1vC6bY6O32dDj3HOhBfdXaHHfNZUp4NZt/view?usp=drive_link",
+    skills: ["Software Engineering", "Programming Logic", "Algorithms"],
+  },
+];

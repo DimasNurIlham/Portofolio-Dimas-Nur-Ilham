@@ -11,7 +11,7 @@ import {
   SiHtml5,
 } from "react-icons/si";
 
-import { FaCss3Alt } from "react-icons/fa";
+import { FaCss3Alt, FaFileExcel, FaFileWord } from "react-icons/fa6";
 
 export const skills = [
   {
@@ -67,6 +67,16 @@ export const skills = [
   {
     name: "Postman",
     icon: SiPostman,
+    category: "Tools",
+  },
+  {
+    name: "Microsoft Excel",
+    icon: FaFileExcel,
+    category: "Tools",
+  },
+  {
+    name: "Microsoft Word",
+    icon: FaFileWord,
     category: "Tools",
   },
 ];

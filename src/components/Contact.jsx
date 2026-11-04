@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
@@ -5,13 +6,15 @@ import {
   FaLinkedin,
   FaWhatsapp,
 } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   {
     icon: FaEnvelope,
     title: "Email",
     value: "dimasnurilham24@gmail.com",
-    link: "mailto:dimasnurilham24@gmail.com",
+    // Membuka compose email di Gmail web secara langsung
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=dimasnurilham24@gmail.com",
   },
   {
     icon: FaWhatsapp,
@@ -34,6 +37,59 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: "", message: "" });
+
+    // Mengambil kunci dari file .env.local
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          setStatus({
+            type: "success",
+            message: "Pesan berhasil terkirim! Terima kasih telah menghubungi.",
+          });
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          setLoading(false);
+          setStatus({
+            type: "error",
+            message: "Gagal mengirim pesan. Silakan coba lagi nanti.",
+          });
+          console.error("EmailJS Error:", error);
+        }
+      );
+  };
+
   return (
     <section
       id="contact"
@@ -102,10 +158,22 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className="rounded-3xl border border-green-400/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8"
           >
             <div className="space-y-4 sm:space-y-5">
+              {status.message && (
+                <div
+                  className={`rounded-xl p-3 text-xs sm:text-sm ${
+                    status.type === "success"
+                      ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                      : "bg-red-500/20 text-red-300 border border-red-500/30"
+                  }`}
+                >
+                  {status.message}
+                </div>
+              )}
+
               <div>
                 <label className="mb-2 block text-xs font-medium text-slate-300 sm:text-sm">
                   Name
@@ -113,6 +181,10 @@ export default function Contact() {
 
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   placeholder="Your Name"
                   className="w-full rounded-xl border border-green-400/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-green-400 focus:shadow-[0_0_15px_rgba(57,255,20,0.3)] sm:px-5 sm:text-base"
                 />
@@ -125,6 +197,10 @@ export default function Contact() {
 
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   placeholder="your@email.com"
                   className="w-full rounded-xl border border-green-400/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-green-400 focus:shadow-[0_0_15px_rgba(57,255,20,0.3)] sm:px-5 sm:text-base"
                 />
@@ -137,6 +213,10 @@ export default function Contact() {
 
                 <textarea
                   rows="5"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   placeholder="Write your message..."
                   className="w-full rounded-xl border border-green-400/20 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-all duration-300 focus:border-green-400 focus:shadow-[0_0_15px_rgba(57,255,20,0.3)] sm:px-5 sm:text-base"
                 />
@@ -144,9 +224,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full rounded-xl bg-green-400 py-3 text-sm font-semibold text-slate-950 transition-all duration-300 hover:scale-[1.01] hover:bg-green-300 hover:shadow-[0_0_30px_rgba(57,255,20,.5)] sm:py-3.5 sm:text-base"
+                disabled={loading}
+                className="w-full rounded-xl bg-green-400 py-3 text-sm font-semibold text-slate-950 transition-all duration-300 hover:scale-[1.01] hover:bg-green-300 hover:shadow-[0_0_30px_rgba(57,255,20,.5)] disabled:opacity-50 sm:py-3.5 sm:text-base"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </div>
           </motion.form>

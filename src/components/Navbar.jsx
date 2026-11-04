@@ -194,7 +194,7 @@ export default function Navbar() {
             {/* ========================= */}
             <div className="flex items-center gap-3 shrink-0">
               <motion.a
-                href="/resume.pdf"
+                href="https://drive.google.com/file/d/1Jf_oLa89vQb_GjbB8XZ91gCgedtQamqf/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -208,7 +208,7 @@ export default function Navbar() {
                   <Download size={16} />
                 </motion.div>
 
-                <span>Resume</span>
+                <span>CV</span>
               </motion.a>
 
               {/* ========================= */}
@@ -291,7 +291,7 @@ export default function Navbar() {
                   })}
 
                   <motion.a
-                    href="/resume.pdf"
+                    href="https://drive.google.com/file/d/1Jf_oLa89vQb_GjbB8XZ91gCgedtQamqf/view?usp=drive_link"
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, y: 20 }}
@@ -301,7 +301,7 @@ export default function Navbar() {
                     className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-green-400/40 bg-green-400/10 py-3 font-medium text-green-400 transition-all duration-300 hover:bg-green-400 hover:text-black hover:shadow-[0_0_25px_rgba(57,255,20,0.45)]"
                   >
                     <Download size={18} />
-                    Download Resume
+                    Download CV
                   </motion.a>
                 </div>
               </motion.div>

@@ -109,7 +109,7 @@ export default function Hero() {
             </motion.a>
 
             <motion.a
-              href="/resume.pdf"
+              href="https://drive.google.com/file/d/1Jf_oLa89vQb_GjbB8XZ91gCgedtQamqf/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{

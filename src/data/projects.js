@@ -17,7 +17,7 @@ export const projects = [
       "PostgreSQL",
       "REST API",
     ],
-    github: "#",
+    github: "https://github.com/DimasNurIlham/minikoffie",
     demo: "#",
   },
   {

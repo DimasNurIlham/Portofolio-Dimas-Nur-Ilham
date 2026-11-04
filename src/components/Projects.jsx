@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { projects } from "../data/projects";
 
 export default function Projects() {
@@ -81,18 +81,6 @@ export default function Projects() {
                     >
                       <FaGithub size={18} />
                       GitHub
-                    </a>
-                  )}
-
-                  {featured.demo && (
-                    <a
-                      href={featured.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 rounded-full bg-green-400 px-5 py-3 text-sm font-semibold text-black shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(57,255,20,0.6)]"
-                    >
-                      <FaExternalLinkAlt size={14} />
-                      Live Demo
                     </a>
                   )}
                 </div>
